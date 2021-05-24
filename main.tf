@@ -127,6 +127,7 @@ resource "aws_iam_policy" "datadog-core" {
                 "s3:GetBucketTagging",
                 "s3:ListAllMyBuckets",
                 "s3:PutBucketNotification",
+                "s3:PutObject",
                 "ses:Get*",
                 "sns:List*",
                 "sns:Publish",
