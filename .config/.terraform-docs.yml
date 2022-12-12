@@ -1,0 +1,62 @@
+version: ""
+
+formatter: markdown table
+
+name: terraform-aws-datadog-intergration
+
+content: |-
+  # terraform-aws-datadog-intergration
+
+  GitHub: [StratusGrid/terraform-aws-datadog-intergration](https://github.com/StratusGrid/terraform-aws-datadog-integration)
+
+  This module configures the AWS / Datadog integration.
+
+  There are two main components:
+  
+    1. Datadog core integration, enabling datadog's AWS integration
+    2. Datadog logs_monitoring forwarder, enabling logshipping watched S3 buckets
+      * Forward CloudWatch, ELB, S3, CloudTrail, VPC and CloudFront logs to Datadog
+      * Forward S3 events to Datadog
+      * Forward Kinesis data stream events to Datadog, only CloudWatch logs are supported
+      * Forward custom metrics from AWS Lambda functions via CloudWatch logs
+      * Forward traces from AWS Lambda functions via CloudWatch logs
+      * Generate and submit enhanced Lambda metrics (aws.lambda.enhanced.*) parsed from the AWS REPORT log: duration, billed_duration, max_memory_used, and estimated_cost
+
+
+  ## Examples
+  ```hcl
+  {{ include "examples/cloudwatch_log_sync/example1.tfnot" }}
+  ```
+  ```hcl
+  {{ include "examples/full_integration/example1.tfnot" }}
+  ```
+  ---
+
+  {{ .Requirements }}
+
+  {{ .Resources }}
+
+  {{ .Inputs }}
+
+  {{ .Outputs }}
+
+  ---
+
+  <span style="color:red">Note!</span> 
+  ---
+  Manual changes to the README will be overwritten when the documentation is updated. To update the documentation, run `terraform-docs -c .config/.terraform-docs.yml`
+
+sections:
+  show:
+    - requirements
+    - resources
+    - inputs
+    - outputs
+
+sort:
+  enabled: true
+  by: name
+
+output:
+  file: README.md
+  mode: replace

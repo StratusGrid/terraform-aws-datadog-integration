@@ -1,3 +1,5 @@
+# Cloudwatch log sync Integration
+
 variable "dd_api_key" {
   type    = string
   default = "1234567890"

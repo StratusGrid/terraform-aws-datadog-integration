@@ -1,20 +1,20 @@
 # Make lambda function accept invokes from S3
-resource "aws_lambda_permission" "allow-elblog-trigger" {
+resource "aws_lambda_permission" "allow_elblog_trigger" {
   count         = var.create_elb_logs_bucket ? 1 : 0
   statement_id  = "AllowExecutionFromELBLogBucket"
   action        = "lambda:InvokeFunction"
-  function_name = aws_cloudformation_stack.datadog-forwarder.outputs.DatadogForwarderArn
+  function_name = aws_cloudformation_stack.datadog_forwarder.outputs.DatadogForwarderArn
   principal     = "s3.amazonaws.com"
   source_arn    = aws_s3_bucket.elb_logs[0].arn
 }
 
 # Tell S3 bucket to invoke DD lambda once an object is created/modified
-resource "aws_s3_bucket_notification" "elblog-notification-dd-log" {
+resource "aws_s3_bucket_notification" "elblog_notification_dd_log" {
   count  = var.create_elb_logs_bucket ? 1 : 0
   bucket = aws_s3_bucket.elb_logs[0].id
 
   lambda_function {
-    lambda_function_arn = aws_cloudformation_stack.datadog-forwarder.outputs.DatadogForwarderArn
+    lambda_function_arn = aws_cloudformation_stack.datadog_forwarder.outputs.DatadogForwarderArn
     events              = ["s3:ObjectCreated:*"]
   }
 }
@@ -25,6 +25,7 @@ locals {
   elb_logs_s3_bucket = "${var.elb_logs_bucket_prefix}-${var.account_name}-elb-logs"
 }
 
+#tfsec:ignore:aws-s3-block-public-acls tfsec:ignore:aws-s3-block-public-policy tfsec:ignore:aws-s3-ignore-public-acls tfsec:ignore:aws-s3-no-public-buckets tfsec:ignore:aws-s3-encryption-customer-key tfsec:ignore:aws-s3-enable-bucket-logging tfsec:ignore:aws-s3-enable-versioning tfsec:ignore:aws-s3-specify-public-access-block -- Ignore error for not having a public ACL
 resource "aws_s3_bucket" "elb_logs" {
   count  = var.create_elb_logs_bucket ? 1 : 0
   bucket = local.elb_logs_s3_bucket

@@ -1,13 +1,13 @@
-resource "aws_cloudformation_stack" "datadog-forwarder" {
+resource "aws_cloudformation_stack" "datadog_forwarder" {
   name         = "${var.aws_region}-${local.stack_prefix}datadog-forwarder"
   capabilities = ["CAPABILITY_IAM", "CAPABILITY_NAMED_IAM", "CAPABILITY_AUTO_EXPAND"]
   parameters = {
-    DdApiKeySecretArn = data.aws_secretsmanager_secret.dd_api_key.id
-    DdApiKey          = "dummy-value"
-    DdTags            = replace(jsonencode(var.aws_integration_tags), "/[{}\"]/", "")
-    DdSite            = var.dd_forwarder_dd_site
-    ExcludeAtMatch    = var.log_exclude_at_match
-    FunctionName      = "${var.aws_region}-${local.stack_prefix}datadog-forwarder"
+    DdApiKeySecretArn   = data.aws_secretsmanager_secret.dd_api_key.id
+    DdApiKey            = "dummy-value"
+    DdTags              = replace(jsonencode(var.aws_integration_tags), "/[{}\"]/", "")
+    DdSite              = var.dd_forwarder_dd_site
+    ExcludeAtMatch      = var.log_exclude_at_match
+    FunctionName        = "${var.aws_region}-${local.stack_prefix}datadog-forwarder"
     LogRetentionInDays  = var.dd_forwarder_log_retention_in_days
     ReservedConcurrency = var.reserved_concurrency
   }
@@ -23,6 +23,8 @@ resource "aws_cloudformation_stack" "datadog-forwarder" {
 data "aws_secretsmanager_secret" "dd_api_key" {
   name = var.datadog_api_key_name
 }
+
+#tflint-ignore: terraform_unused_declarations
 data "aws_secretsmanager_secret_version" "dd_api_key" {
   secret_id = data.aws_secretsmanager_secret.dd_api_key.id
 }
