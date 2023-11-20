@@ -154,8 +154,8 @@ module "datadog" {
 
 | Name | Description |
 |------|-------------|
-| <a name="output_datadog_iam_role"></a> [datadog\_iam\_role](#output\_datadog\_iam\_role) | tflint-ignore: terraform\_documented\_outputs -- Ignore Notice on missing description |
-| <a name="output_datadog_logs_monitoring_lambda_function_name"></a> [datadog\_logs\_monitoring\_lambda\_function\_name](#output\_datadog\_logs\_monitoring\_lambda\_function\_name) | tflint-ignore: terraform\_documented\_outputs -- Ignore Notice on missing description |
+| <a name="output_datadog_iam_role"></a> [datadog\_iam\_role](#output\_datadog\_iam\_role) | Datadog IAM Role |
+| <a name="output_datadog_logs_monitoring_lambda_function_name"></a> [datadog\_logs\_monitoring\_lambda\_function\_name](#output\_datadog\_logs\_monitoring\_lambda\_function\_name) | Datadog monitoring lambda function name |
 
 ---
 
