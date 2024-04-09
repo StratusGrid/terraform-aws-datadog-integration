@@ -1,3 +1,5 @@
+header-from: ./.config/header.md
+
 version: ""
 
 formatter: markdown table
@@ -5,6 +7,8 @@ formatter: markdown table
 name: terraform-aws-datadog-intergration
 
 content: |-
+ {{ .Header }}
+
   # terraform-aws-datadog-intergration
 
   GitHub: [StratusGrid/terraform-aws-datadog-intergration](https://github.com/StratusGrid/terraform-aws-datadog-integration)
@@ -48,6 +52,7 @@ content: |-
 
 sections:
   show:
+    - header
     - requirements
     - resources
     - inputs

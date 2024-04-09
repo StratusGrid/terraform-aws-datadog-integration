@@ -1,25 +1,36 @@
 <!-- BEGIN_TF_DOCS -->
-# terraform-aws-datadog-intergration
+<p align="center">                                                                                                                                            
+                                                                                
+  <img src="https://github.com/StratusGrid/terraform-readme-template/blob/main/header/stratusgrid-logo-smaller.jpg?raw=true" />
+  <p align="center">                                                           
+    <a href="https://stratusgrid.com/book-a-consultation">Contact Us Test</a> |                  
+    <a href="https://stratusgrid.com/cloud-cost-optimization-dashboard">Stratusphere FinOps</a> |
+    <a href="https://stratusgrid.com">StratusGrid Home</a> |
+    <a href="https://stratusgrid.com/blog">Blog</a>
+  </p>                    
+</p>
 
-GitHub: [StratusGrid/terraform-aws-datadog-intergration](https://github.com/StratusGrid/terraform-aws-datadog-integration)
+ # terraform-aws-datadog-intergration
 
-This module configures the AWS / Datadog integration.
+ GitHub: [StratusGrid/terraform-aws-datadog-intergration](https://github.com/StratusGrid/terraform-aws-datadog-integration)
 
-There are two main components:
+ This module configures the AWS / Datadog integration.
 
-1. Datadog core integration, enabling datadog's AWS integration
-2. Datadog logs_monitoring forwarder, enabling logshipping watched S3 buckets
-* Forward CloudWatch, ELB, S3, CloudTrail, VPC and CloudFront logs to Datadog
-* Forward S3 events to Datadog
-* Forward Kinesis data stream events to Datadog, only CloudWatch logs are supported
-* Forward custom metrics from AWS Lambda functions via CloudWatch logs
-* Forward traces from AWS Lambda functions via CloudWatch logs
-* Generate and submit enhanced Lambda metrics (aws.lambda.enhanced.*) parsed from the AWS REPORT log: duration, billed_duration, max_memory_used, and estimated_cost
+ There are two main components:
+ 
+   1. Datadog core integration, enabling datadog's AWS integration
+   2. Datadog logs_monitoring forwarder, enabling logshipping watched S3 buckets
+     * Forward CloudWatch, ELB, S3, CloudTrail, VPC and CloudFront logs to Datadog
+     * Forward S3 events to Datadog
+     * Forward Kinesis data stream events to Datadog, only CloudWatch logs are supported
+     * Forward custom metrics from AWS Lambda functions via CloudWatch logs
+     * Forward traces from AWS Lambda functions via CloudWatch logs
+     * Generate and submit enhanced Lambda metrics (aws.lambda.enhanced.*) parsed from the AWS REPORT log: duration, billed_duration, max_memory_used, and estimated_cost
 
 
-## Examples
-```hcl
-# Cloudwatch log sync Integration
+ ## Examples
+ ```hcl
+ # Cloudwatch log sync Integration
 
 variable "dd_api_key" {
   type    = string
@@ -54,9 +65,9 @@ module "datadog" {
   enable_datadog_aws_integration = false
   cloudwatch_log_groups          = ["cloudwatch_log_group_1", "cloudwatch_log_group_2"]
 }
-```
-```hcl
-# Full Integration
+ ```
+ ```hcl
+ # Full Integration
 
 variable "dd_api_key" {
   type    = string
@@ -96,10 +107,10 @@ module "datadog" {
 
   cloudwatch_log_groups = ["cloudwatch_log_group_1", "cloudwatch_log_group_2"]
 }
-```
----
+ ```
+ ---
 
-## Requirements
+ ## Requirements
 
 | Name | Version |
 |------|---------|
@@ -107,7 +118,7 @@ module "datadog" {
 | <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 3.63 |
 | <a name="requirement_datadog"></a> [datadog](#requirement\_datadog) | >= 2.10, < 3 |
 
-## Resources
+ ## Resources
 
 | Name | Type |
 |------|------|
@@ -126,7 +137,7 @@ module "datadog" {
 | [datadog_integration_aws_lambda_arn.main_collector](https://registry.terraform.io/providers/DataDog/datadog/latest/docs/resources/integration_aws_lambda_arn) | resource |
 | [datadog_integration_aws_log_collection.main](https://registry.terraform.io/providers/DataDog/datadog/latest/docs/resources/integration_aws_log_collection) | resource |
 
-## Inputs
+ ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
@@ -150,16 +161,16 @@ module "datadog" {
 | <a name="input_log_exclude_at_match"></a> [log\_exclude\_at\_match](#input\_log\_exclude\_at\_match) | Sets EXCLUDE\_AT\_MATCH environment variable, which allows excluding unwanted log lines | `string` | `"$x^"` | no |
 | <a name="input_reserved_concurrency"></a> [reserved\_concurrency](#input\_reserved\_concurrency) | Lambda reserved concurrency for Datadog Forwarder. | `number` | `100` | no |
 
-## Outputs
+ ## Outputs
 
 | Name | Description |
 |------|-------------|
 | <a name="output_datadog_iam_role"></a> [datadog\_iam\_role](#output\_datadog\_iam\_role) | Datadog IAM Role |
 | <a name="output_datadog_logs_monitoring_lambda_function_name"></a> [datadog\_logs\_monitoring\_lambda\_function\_name](#output\_datadog\_logs\_monitoring\_lambda\_function\_name) | Datadog monitoring lambda function name |
 
----
+ ---
 
-<span style="color:red">Note!</span>
----
-Manual changes to the README will be overwritten when the documentation is updated. To update the documentation, run `terraform-docs -c .config/.terraform-docs.yml`
+ <span style="color:red">Note!</span> 
+ ---
+ Manual changes to the README will be overwritten when the documentation is updated. To update the documentation, run `terraform-docs -c .config/.terraform-docs.yml`
 <!-- END_TF_DOCS -->
